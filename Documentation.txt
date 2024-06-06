@@ -1,0 +1,59 @@
+Overview
+
+This code simulates a simple library management system. It allows users to add books to the library, view available books, search for books by title, author, or publication year, borrow books, and return books. The system uses arrays for storing books instead of dynamic containers like vectors.
+
+*****Classes*****
+
+1. Book:--
+ Represents a book with attributes such as title, author, publication year, and a flag indicating whether the book is borrowed.
+    Attributes:
+            string title
+            string author
+            int publicationYear
+            bool isBorrowed
+     Methods:
+            Constructors: Book(), Book(string t, string a, int py)
+            Getters: getTitle(), getAuthor(), getPublicationYear(), getIsBorrowed()
+            Actions: borrowBook(), returnBook()
+
+2. Library:--
+Manages a collection of books using a fixed-size array.
+   Attributes:
+            Book books[100] - Array to store up to 100 books.
+            int bookCount - Tracks the number of books currently in the library.
+   Methods:
+        addBook(const Book& book) - Adds a book to the library.
+        removeBook(const string& title) - Removes a book by title.
+        getAvailableBooks(int& availableCount) const - Returns an array of available books and sets the count.
+        searchBookByTitle(const string& title) - Searches for a book by title.
+        searchBookByAuthor(const string& author, int& authorCount) const - Searches for books by author and sets
+the count. 
+        searchBookByPublicationYear(int year, int& yearCount) const - Searches for books by publication year and sets the count.
+
+3. User:--
+Represents a user who can borrow and return books.
+  Attributes:
+            string name
+            Book borrowedBooks[10] - Array to store up to 10 borrowed books.
+            int borrowedCount - Tracks the number of borrowed books.
+   Methods:
+            Constructor: User(string n)
+            borrowBook(Library& library, const string& title) - Borrows a book by title.
+            returnBook(Library& library, const string& title) - Returns a borrowed book by title.
+
+
+*****Design Choices*****
+
+1. Arrays vs. Vectors: I chose arrays to avoid the use of STL containers like vector, providing a more manual approach to managing collections. This requires handling array bounds and sizes explicitly.
+
+2. Fixed Sizes: The sizes of arrays (100 for library books and 10 for user borrowed books) are fixed for simplicity. This simplifies memory management but limits scalability.
+
+3. Procedural Logic: The main logic of the program is handled in a procedural manner within the main function, with a menu-based interface for user interactions.
+
+Instructions for Execution:
+1. Use a C++ compiler to compile the code. For example, with g++:
+	g++ -o main main.cpp
+
+2.Execute the compiled binary: 
+	./main
+
